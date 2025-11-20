@@ -1,0 +1,171 @@
+/* === GLOBAL STYLES === */
+:root {
+  --primary-yellow: #ffd700;
+  --dark-yellow: #d4af37;
+  --gold: #f5d142;
+  --fire-red: #ff6f00;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at center, #000010, #000);
+  color: rgb(236, 236, 238);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* === BUTTONS === */
+.btn {
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  font-family: inherit;
+  color: #fff;
+  background: #000;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--dark-yellow);
+  color: #000;
+}
+
+/* === STAKE INPUT + BUTTON === */
+#stakeAmount {
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+}
+
+#stakeBtn {
+  width: 60%;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* === LIVE TRANSACTION FEED === */
+.live-transactions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.history-box {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 200, 0, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 120, 0, 0.2);
+  padding: 15px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.history-box h3 {
+  text-align: center;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px var(--fire-red);
+  font-size: 18px;
+}
+
+.scroll-wrapper {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* === LIVE COUNTER === */
+.live-counter {
+  text-align: center;
+  margin: 25px auto;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-yellow);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--primary-yellow);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.6); transform: scale(1); }
+  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.9); transform: scale(1.03); }
+  100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.6); transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .live-counter {
+    width: 90%;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}
+
+/* === HISTORY LIST === */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  opacity: 0.9;
+}
+
+.history-item.deposit {
+  border-left: 4px solid #00ff88;
+  color: #aaffcc;
+}
+
+.history-item.withdraw {
+  border-left: 4px solid #ff4d4d;
+  color: #ffaaaa;
+}
+
+/* === ANIMATIONS === */
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* === NEON / BORDER EFFECTS === */
+.neon {
+  text-shadow: 0 0 5px rgb(242, 243, 255),
+               0 0 10px rgb(240, 255, 255),
+               0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.border-glow {
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #e2e7e7, #dee0e0, #e7eeee) border-box;
+  animation: glowBorder 2s linear infinite;
+}
+
+@keyframes glowBorder {
+  0% { box-shadow: 0 0 5px #feffff, 0 0 15px #cacbcc; }
+  50% { box-shadow: 0 0 20px #f9fcfc, 0 0 40px #cfd0d1; }
+  100% { box-shadow: 0 0 5px #ecf0f0, 0 0 15px #edf0f1; }
+}

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BNB Fortune - 0.5% Daily ✔ Long Term</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-yellow: #d4af37;
+      --dark-yellow: #b68c25;
+      --black: #111;
+      --white: #fff;
+      --light-gray: #f7f7f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    header.topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      background: var(--light-gray);
+      border-bottom: 2px solid var(--primary-yellow);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 28px;
+      color: var(--dark-yellow);
+      letter-spacing: 2px;
+    }
+
+    .controls { display: flex; gap: 10px; }
+
+    main.center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px;
+    }
+
+    .center-card {
+      width: 100%;
+      max-width: 900px;
+      background: var(--light-gray);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      padding: 50px 40px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 5px var(--primary-yellow));
+    }
+
+    .contract-balance {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark-yellow);
+    }
+
+    .highlight-text {
+      color: var(--dark-yellow);
+      font-weight: bold;
+    }
+
+    .welcome-box {
+      max-width: 750px;
+      margin: 30px auto 40px;
+      padding: 25px 30px;
+      background: var(--white);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-left: 5px solid var(--primary-yellow);
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    .welcome-box h3 {
+      color: var(--black);
+      font-size: 16px;
+      text-align: justify;
+    }
+
+    input {
+      background: var(--white);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: var(--black);
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    /* 🔥 Button Glow Effect Only */
+    .btn {
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(90deg, var(--dark-yellow), var(--primary-yellow));
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 12px 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      transition: all 0.5s ease;
+      z-index: 0;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Optional pulsing animation */
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+      50% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
+    }
+
+    .btn {
+      animation: pulse 2.5s infinite;
+    }
+
+    .user-stats {
+      background: var(--white);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.03);
+    }
+
+    .user-stats h3 {
+      font-size: 18px;
+      color: var(--dark-yellow);
+      margin-bottom: 10px;
+    }
+
+    .stat-line { margin-top: 8px; font-size: 16px; }
+
+    .stake-area {
+      margin-top: 35px;
+    }
+
+    .withdraw-area {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .withdraw-box {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .withdraw-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .rewards {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .rewards h3 {
+      text-align: center;
+      font-size: 20px;
+      color: var(--dark-yellow);
+      margin-bottom: 18px;
+    }
+
+    .rewards ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .rewards li {
+      text-align: center;
+      font-size: 15px;
+      padding: 6px 0;
+      background: var(--white);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    footer {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .footer-links a img {
+      width: 38px;
+      height: 38px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a img:hover {
+      transform: scale(1.1);
+    }
+
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .center-card { padding: 25px 18px; }
+      .withdraw-buttons { flex-direction: column; }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">BNB Fortune</div>
+      <div class="controls">
+        <button id="connectBtn" class="btn">Connect Wallet</button>
+      </div>
+    </header>
+
+    <div class="welcome-box">
+      <h3>
+        Welcome to <b>BNB Fortune</b> — your gateway to lasting wealth and steady BNB growth.  
+        <br><br>
+        Earn a consistent <b>0.5% daily return</b> and reach up to <b>180% total ROI</b> — crafted for <b>long-term stability</b> and <b>sustainable rewards</b>.  
+        <br><br>
+        Begin your journey with just <b>0.005 BNB</b> and watch your fortune grow over time — powered by a transparent, community-driven ecosystem.  
+        <br><br>
+        At <b>BNB Fortune</b>, we believe true wealth is built patiently — <b>stake smart, earn daily, and grow your legacy.</b>  
+        <br><br>
+        ✅ Invest • ✅ Withdraw • ✅ Reinvest — no hidden functions, fully transparent.
+      </h3>
+
+      <div class="live-counter">
+        ⏳ Live since: <span id="liveTime">Loading...</span>
+      </div>
+    </div>
+
+    <main class="center">
+      <div class="center-card">
+        <img src="logo.png" class="logo" alt="Logo" />
+
+        <div class="contract-balance">  
+          Contract Balance: <span id="contractBalance" class="highlight-text">-- BNB</span>  
+        </div> 
+
+        <div id="walletShort">Not connected</div>
+        <div style="margin-bottom:15px;">
+          Your Wallet Balance: <span id="balance" class="highlight-text">-- BNB</span>
+        </div>
+
+        <div class="user-stats">
+          <h3>Your Statistics</h3>
+          <div class="stat-line">Total Invest: <span id="totalDeposits" class="highlight-text">0 BNB</span></div>
+          <div class="stat-line">Total Withdrawn: <span id="totalWithdrawn" class="highlight-text">0 BNB</span></div>
+        </div>
+
+        <div class="stake-area">
+          <label><b>0.5% Daily ROI</b></label>
+          <div style="display:flex; gap:10px; margin-top:15px;">
+            <input id="stakeAmount" type="number" min="0.005" placeholder="Amount (BNB)" />
+            <button id="stakeBtn" class="btn">Invest</button>
+          </div>
+          <div style="margin-top:6px;">Minimum: 0.005 BNB</div>
+        </div>
+
+        <div style="margin-top:25px;">
+          <input id="refLink" readonly placeholder="Your referral link will appear here" />
+          <button id="copyRef" class="btn" style="margin-top:10px;">Copy Referral Link</button>
+        </div>
+
+        <div class="withdraw-area">
+          <div class="withdraw-box">
+            <div>Available to Withdraw</div>
+            <div id="withdrawable" class="highlight-text">0 BNB</div>
+          </div>
+          <div class="withdraw-buttons">
+            <button id="withdrawBtn" class="btn">Withdraw</button>
+            <button id="reinvestBtn" class="btn">Reinvest</button>
+          </div>
+        </div>
+
+        <div class="rewards">
+          <h3>Your Rewards by Levels:</h3>
+          <ul>
+            <li>Level 1 – 7%</li><li>Level 2 – 5%</li><li>Level 3 – 3%</li>
+            <li>Level 4 – 2%</li><li>Level 5 – 1%</li><li>Level 6 – 1%</li>
+            <li>Level 7 – 1%</li><li>Level 8 – 1%</li><li>Level 9 – 1%</li><li>Level 10 – 1%</li>
+          </ul>
+        </div>
+
+        <footer>
+          <div class="footer-links">
+            <a href="https://bscscan.com/address/0x229AfFF3C4CB1D90e73A8C8668635bb0f9Ef6Fc0#code" target="_blank"><img src="bnb.png" alt="Contract"></a>
+            <a href="https://t.me/bnbfortune" target="_blank"><img src="1.svg" alt="Telegram"></a>
+            <a href="whitepaper.pdf" target="_blank"><img src="whitepaper.png" alt="Whitepaper"></a>
+            <a href="https://solidityscan.com/qs-report/a005f638ffc69bf55775124ad7e39325/9c7c4120ab3fd43f/786d914e44bfcb0e" target="_blank"><img src="audit.png" alt="Audit"></a>
+          </div>
+
+          <p>© 2025 BNBFORTUNE · All rights reserved.</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="abi.js"></script>
+  <script src="app.js"></script>
+  <script src="history.js"></script>
+
+  <script>
+  (function(){
+    const LAUNCH_ISO = "2025-10-29T00:00:00";
+    const startDate = new Date(LAUNCH_ISO);
+    const liveTimeEl = document.getElementById("liveTime");
+    if (!liveTimeEl) return;
+
+    function calc(start, end) {
+      let years = end.getFullYear() - start.getFullYear();
+      let months = end.getMonth() - start.getMonth();
+      let days = end.getDate() - start.getDate();
+      let hours = end.getHours() - start.getHours();
+      let minutes = end.getMinutes() - start.getMinutes();
+      let seconds = end.getSeconds() - start.getSeconds();
+
+      if (seconds < 0) { seconds += 60; minutes--; }
+      if (minutes < 0) { minutes += 60; hours--; }
+      if (hours < 0) { hours += 24; days--; }
+      if (days < 0) { months--; days += 30; }
+      if (months < 0) { months += 12; years--; }
+
+      return { years, months, days, hours, minutes, seconds };
+    }
+
+    function pad(n){ return n.toString().padStart(2, '0'); }
+
+    function render(){
+      const now = new Date();
+      if (now < startDate) {
+        liveTimeEl.innerText = "Not launched yet";
+        return;
+      }
+      const d = calc(startDate, now);
+      const parts = [];
+      if (d.years) parts.push(d.years+"y");
+      if (d.months) parts.push(d.months+"m");
+      parts.push(d.days+"d");
+      parts.push(`${pad(d.hours)}:${pad(d.minutes)}:${pad(d.seconds)}`);
+      liveTimeEl.innerText = parts.join(" ");
+    }
+    render();
+    setInterval(render,1000);
+  })();
+  </script>
+</body>
+</html>
